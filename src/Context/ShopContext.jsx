@@ -1,10 +1,13 @@
-import React, { createContext, useState } from "react";
-import all_product from '../Components/Assets/all_product';
+import React, { createContext, useState, useEffect } from "react";
+import all_product from "../Components/Assets/all_product";
 
 export const ShopContext = createContext(null);
 
 // Create initial cart structure
 const getDefaultCart = () => {
+  const savedCart = localStorage.getItem("cartItems");
+  if (savedCart) return JSON.parse(savedCart);
+
   let cart = {};
   for (let index = 0; index < all_product.length; index++) {
     const productId = all_product[index].id;
@@ -13,10 +16,22 @@ const getDefaultCart = () => {
   return cart;
 };
 
-
 const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
-  const [wishlist, setWishlist] = useState([]);
+  const [wishlist, setWishlist] = useState(() => {
+    const savedWishlist = localStorage.getItem("wishlist");
+    return savedWishlist ? JSON.parse(savedWishlist) : [];
+  });
+
+  // Persist cartItems to localStorage
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  // Persist wishlist to localStorage
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
 
   const addToCart = (itemId, size = null) => {
     setCartItems((prev) => {
@@ -45,39 +60,6 @@ const ShopContextProvider = (props) => {
     });
   };
 
-  const removeFromWishlist = (itemId) => {
-    setWishlist((prevWishlist) => prevWishlist.filter((id) => id !== itemId));
-  };
-
-  const toggleWishlistItem = (itemId) => {
-    setWishlist((prevWishlist) =>
-      prevWishlist.includes(itemId)
-        ? prevWishlist.filter((id) => id !== itemId)
-        : [...prevWishlist, itemId]
-    );
-  };
-
-  const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const itemId in cartItems) {
-      const item = all_product.find(product => product.id === Number(itemId));
-      if (item && cartItems[itemId].quantity > 0) {
-        totalAmount += item.new_price * cartItems[itemId].quantity;
-      }
-    }
-    return totalAmount;
-  };
-
-  const getTotalCartItems = () => {
-    let totalItem = 0;
-    for (const itemId in cartItems) {
-      if (cartItems[itemId].quantity > 0) {
-        totalItem += cartItems[itemId].quantity;
-      }
-    }
-    return totalItem;
-  };
-
   const removeFromCartCompletely = (itemId) => {
     setCartItems((prev) => ({
       ...prev,
@@ -85,17 +67,49 @@ const ShopContextProvider = (props) => {
     }));
   };
 
+  const toggleWishlistItem = (itemId) => {
+    setWishlist((prev) =>
+      prev.includes(itemId)
+        ? prev.filter((id) => id !== itemId)
+        : [...prev, itemId]
+    );
+  };
+
+  const removeFromWishlist = (itemId) => {
+    setWishlist((prev) => prev.filter((id) => id !== itemId));
+  };
+
+  const getTotalCartAmount = () => {
+    let total = 0;
+    for (const itemId in cartItems) {
+      const product = all_product.find((p) => p.id === Number(itemId));
+      if (product && cartItems[itemId].quantity > 0) {
+        total += product.new_price * cartItems[itemId].quantity;
+      }
+    }
+    return total;
+  };
+
+  const getTotalCartItems = () => {
+    let total = 0;
+    for (const itemId in cartItems) {
+      total += cartItems[itemId].quantity;
+    }
+    return total;
+  };
+
   const contextValue = {
-   all_product,
-  cartItems,
-  addToCart,
-  removeFromCart,
-  removeFromCartCompletely,
-  wishlistItems: wishlist,
-  toggleWishlistItem,
-  removeFromWishlist, // ✅ ADD THIS LINE
-  getTotalCartAmount,
-  getTotalCartItems,
+    all_product,
+    cartItems,
+    addToCart,
+    removeFromCart,
+    removeFromCartCompletely,
+    wishlistItems: wishlist,
+    toggleWishlistItem,
+    removeFromWishlist,
+    getTotalCartAmount,
+    getTotalCartItems,
+    setCartItems, // In case you want to clear the cart or reset
   };
 
   return (
@@ -106,3 +120,4 @@ const ShopContextProvider = (props) => {
 };
 
 export default ShopContextProvider;
+

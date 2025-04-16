@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../Context/ShopContext';
 import { Link } from 'react-router-dom';
 import './CSS/Wishlist.css'; // Optional: for custom styles
@@ -19,6 +19,16 @@ const Wishlist = () => {
     });
   };
 
+  //add item in wishlishlist item cannot get remove after refresh
+  const [wishlist, setWishlist] = useState(() => {
+    const savedWishlist = localStorage.getItem("wishlist");
+    return savedWishlist ? JSON.parse(savedWishlist) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
+
   const handleSizeChange = (productId, size) => {
     setSizeMap((prev) => ({ ...prev, [productId]: size }));
   };
@@ -26,7 +36,7 @@ const Wishlist = () => {
   const handleAddToCart = (product) => {
     const selectedSize = sizeMap[product.id] || 'M'; // Default to M
     addToCart(product.id, selectedSize);
-    removeFromWishlist(product.id); // Optional: remove from wishlist
+    
   };
 
   const categories = ['All', 'Men', 'Women', 'Kid'];

@@ -164,7 +164,7 @@ const CheckoutPage = ({ totalAmount }) => {
             ))}
 
 <button
-  className="btn1"
+  className="btn2"
   onClick={() => {
     if (!selectedAddress) {
       setAddressError('Please select a delivery address');

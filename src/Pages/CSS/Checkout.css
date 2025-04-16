@@ -448,6 +448,7 @@ h2 {
 /* Extra small devices (phones, less than 600px) */
 @media (max-width: 600px) {
   .checkout-container {
+    width: 80%;
     flex-direction: column;
     padding: 10px;
   }
@@ -460,8 +461,8 @@ h2 {
 
   /* Adjust buttons for small screens */
   .btn1, .change-btn {
-    width: 100%;
-    margin-left: 0;
+    width: 90px;
+    margin-left: 40px;
     margin-top: 10px;
   }
 
@@ -478,7 +479,7 @@ h2 {
   }
 
   .order-item img {
-    width: 100%;
+    width: 90%;
     height: auto;
     margin: 0 0 10px 0;
   }
