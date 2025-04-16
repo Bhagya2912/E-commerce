@@ -1,0 +1,395 @@
+/* 
+.hero{
+    height: 100vh;
+    background: linear-gradient(180deg ,#fde1ff,#e1ffea22 60%);
+    display: flex;
+}
+.hero-left{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:20px;
+    padding-left: 180px;
+    line-height: 1.1;
+}
+.hero-left h2{
+    color: #090909;
+    font-size: 26px;
+    font-weight: 600;
+}
+.hero-left p{
+    color: #171717;
+    font-size:100px;
+    font-weight: 700;
+}
+
+.hero-hand-icon{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+.hero-hand-icon img{
+    width: 105px;
+    margin-top: 20px;
+   
+}
+
+
+
+.hero-right{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-right img{
+    margin-bottom: 100px;
+} */
+
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    top: 0%;
+    background-image: url('https://www.stchristophersplace.com/wp-content/uploads/2020/02/Mothershoppers-Event-Hero-Area-Background-Image-1.png');
+    background-repeat: no-repeat; 
+    background-size: cover;      /* Makes the image cover the whole element */
+  background-position: center; 
+    height: 85vh;
+  }
+  
+  .hero-left p{
+    color: #171717;
+    font-size:40px;
+    font-weight: 700;
+    margin-left: 30px;
+    margin-bottom: 60px;
+}
+
+  .hero-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100vw * 3; /* will adjust dynamically based on slides */
+  }
+  
+  .hero-slide {
+    flex: 0 0 100vw; /* each slide takes full viewport width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    box-sizing: border-box;
+  }
+  
+  
+  .hero-left h2 {
+    color: white;
+    font-size: 70px;
+    margin-bottom: 110px;
+    margin-left: 30px;
+  }
+  
+  .hero-hand-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .hero-hand-icon img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .hero-right img {
+    max-width: 900px;
+    max-height: 700px;
+    object-fit: contain;
+   
+    top: 0%;
+    background-size: cover;      /* Makes the image cover the whole element */
+  background-position: center;
+  }
+  
+  .hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: none;
+    font-size: 24px;
+    padding: 30px 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+  
+  .hero-arrow.left {
+    color: black;
+    left: 10px;
+  }
+  
+  .hero-arrow.right {
+    color: black;
+    right: 10px;
+  }
+  
+  .hero-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .dot.active {
+    background-color: #333;
+  }
+  
+  
+
+@media(max-width:1280px){
+    .hero-left{
+        padding-left: 100px;
+    }
+    .hero-left h2{
+        margin-top: 50px;
+        font-size: 22px;
+    }
+    .hero-left p{
+      margin-top: 50px;
+        font-size: 60px;
+    }
+    .hero-hand-icon img{
+        width: 80px;
+    }
+    .hero-latest-btn{
+        gap: 10px;
+        width: 250px;
+        height: 60px;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    .hero-right img{
+        width: 500px;
+        height: 600px;
+    }
+}
+
+@media(max-width:1024px){
+    .hero-left{
+        padding-left: 80px;
+    }
+    .hero-left h2{
+      margin-left: 0;
+      margin-top: 100px;
+        font-size: 20px;
+    }
+    .hero-left p{
+      margin-left: 0;
+        font-size: 50px;
+    }
+    .hero-hand-icon img{
+        width: 65px;
+    }
+    .hero-latest-btn{
+        width: 220px;
+        height: 50px;
+        font-size: 16px;
+    }
+    .hero-right img{
+        width: 300px;
+        height: 900rem;
+    }
+}
+
+@media(max-width:800px){
+    .hero-left{
+        padding-left: 30px;
+    }
+    .hero-left h2{
+        font-size: 16px;
+    }
+    .hero-left p{
+        font-size: 40px;
+    }
+    .hero-hand-icon img{
+        width: 50px;
+    }
+    .hero-latest-btn{
+        width: 175px;
+        height: 40px;
+        font-size: 13px;
+    }
+    .hero-right img{
+      width: 300px;
+      height: 500px;
+  }
+    
+}
+
+@media(max-width:500px){
+    .hero{
+        flex-direction: column;
+    }
+    .hero-right{
+        display: none;
+    }
+    .hero-left h2{
+      margin-top: 90px;
+        margin-left: 0;
+        font-size: 20px;
+    }
+    .hero-left p{
+        margin-left: 0;
+        font-size: 40px;
+    }
+    .hero-hand-icon img{
+        width: 55px;
+    }
+    
+}
+
+@media(max-width:1024px) {
+    .hero-arrow {
+      font-size: 20px;
+      padding: 24px 12px;
+    }
+  
+    .hero-dots {
+      bottom: 10px;
+      gap: 6px;
+    }
+  
+    .dot {
+      width: 9px;
+      height: 9px;
+    }
+  }
+  
+  @media(max-width:768px) {
+    .hero-arrow {
+      font-size: 18px;
+      padding: 20px 10px;
+    }
+  
+    .hero-arrow.left {
+      left: 6px;
+    }
+  
+    .hero-arrow.right {
+      right: 6px;
+    }
+  
+    .hero-dots {
+      bottom: 8px;
+      gap: 6px;
+    }
+  
+    .dot {
+      color: white;
+      width: 8px;
+      height: 8px;
+    }
+  }
+  
+  @media(max-width:480px) {
+    .hero-arrow {
+      font-size: 16px;
+      padding: 16px 8px;
+    }
+  
+    .hero-arrow.left {
+      left: 4px;
+    }
+  
+    .hero-arrow.right {
+      right: 4px;
+    }
+  
+    .hero-dots {
+      bottom: 6px;
+      gap: 4px;
+    }
+  
+    .dot {
+      color: white;
+      width: 7px;
+      height: 7px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    * {
+      box-sizing: border-box;
+    }
+  
+    html, body {
+      margin: 0;
+      padding: 0; 
+      overflow-x: hidden;
+     
+    }
+  
+    .hero {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      width: 100vw;
+    }
+  
+    .hero-arrow {
+      padding: 10px 8px;
+      font-size: 20px;
+    }
+  
+    .hero-left, .hero-right {
+      padding: 0;
+      margin: 0;
+    }
+  
+    .hero-left p {
+      font-size: 32px; /* reduce large text */
+    }
+  
+    .hero-latest-btn {
+      width: 160px;
+      height: 40px;
+      font-size: 13px;
+    }
+  
+    .hero-dots {
+      bottom: 10px;
+    }
+  
+    .hero-right img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+  
+    .dot {
+      width: 8px;
+      height: 8px;
+    }
+
+    
+      
+  }
+  
+  
+

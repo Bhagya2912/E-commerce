@@ -28,11 +28,89 @@
   color: #61dafb;
 }
 
+/* Back to top button styling */
+.back-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  display: none; /* Hidden by default */
+}
+
+.back-top-btn:hover {
+  background-color: #0056b3;
+}
+
+#backToTop {
+  display: block; /* Makes the button visible when scrolled down */
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* For screens larger than 1280px */
+@media (max-width: 1280px) {
+  .App-header {
+    font-size: calc(10px + 1.5vmin); /* Slightly smaller font for medium screens */
+  }
+
+  .back-top-btn {
+    font-size: 22px; /* Adjust font size for medium screens */
+    padding: 12px; /* Increase padding for better appearance */
+  }
+}
+
+/* For tablet-sized screens (less than 1024px) */
+@media (max-width: 1024px) {
+  .App-header {
+    font-size: calc(10px + 1vmin); /* Even smaller font size */
+  }
+
+  .back-top-btn {
+    font-size: 20px; /* Reduce font size for smaller screens */
+    padding: 10px; /* Reduce padding for better space management */
+    bottom: 15px; /* Adjust bottom spacing */
+    right: 15px; /* Adjust right spacing */
+  }
+}
+
+/* For mobile-sized screens (less than 768px) */
+@media (max-width: 768px) {
+  .App-header {
+    font-size: calc(10px + 0.8vmin); /* Smaller font for mobile screens */
+  }
+
+  .back-top-btn {
+    font-size: 18px; /* Smaller button text */
+    padding: 8px; /* Reduce button size */
+    bottom: 10px; /* Slightly smaller bottom margin */
+    right: 10px; /* Slightly smaller right margin */
+  }
+}
+
+/* For very small mobile screens (less than 500px) */
+@media (max-width: 500px) {
+  .App-header {
+    font-size: calc(10px + 0.5vmin); /* Even smaller font size */
+  }
+
+  .back-top-btn {
+    font-size: 16px; /* Significantly smaller text for tiny screens */
+   
+    bottom: 5px; /* Adjust bottom margin */
+    right: 5px; /* Adjust right margin */
   }
 }
