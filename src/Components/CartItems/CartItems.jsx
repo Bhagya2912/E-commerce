@@ -7,6 +7,33 @@ import Gpay_img from '../Assets/Gpay.png';
 import { QRCodeCanvas } from 'qrcode.react';
 import CheckoutPage from '../../Pages/Checkout';
 
+// promoCodes.js
+export const promoCodes = [
+  {
+    code: "SAVE10",
+    description: "Save 10% on your order",
+    start: "2025-04-15T00:00:00",
+    end: "2025-04-30T23:59:59",
+  },
+  {
+    code: "FREESHIP",
+    description: "Free Shipping on all orders",
+    start: "2025-04-10T00:00:00",
+    end: "2025-04-20T23:59:59",
+  },
+  {
+    code: "WELCOME50",
+    description: "₹50 off for new users",
+    start: "2025-04-01T00:00:00",
+    end: "2025-04-25T23:59:59",
+  },
+  {
+    code: "BUY2GET1",
+    description: "Buy 2 Get 1 Free",
+    start: "2025-04-05T00:00:00",
+    end: "2025-04-22T23:59:59",
+  },
+];
 
 const CartItems = () => {
   const {
@@ -20,6 +47,7 @@ const CartItems = () => {
   const [promoInput, setPromoInput] = useState('');
   const [message, setMessage] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [selectedPromo, setSelectedPromo] = useState("");
 
   const deliveryfee = 50;
   const totalAmount = getTotalCartAmount() + deliveryfee;
@@ -48,21 +76,29 @@ const CartItems = () => {
     );
   }
 
-  
+ 
 
   const handlePromoSubmit = () => {
-    if (promoInput.trim().toLowerCase() === 'discount10') {
-      setMessage('Promo code applied successfully! 🎉');
+    const now = new Date();
+  
+    if (!selectedPromo) {
+      setMessage("❌ Please select a promo code.");
     } else {
-      setMessage('Invalid promo code. ❌');
+      const promo = promoCodes.find((p) => p.code === selectedPromo);
+      const start = new Date(promo.start);
+      const end = new Date(promo.end);
+  
+      if (now >= start && now <= end) {
+        setMessage(`✅ Promo "${promo.code}" applied: ${promo.description}`);
+      } else {
+        setMessage(`❌ Promo "${promo.code}" is not active right now.`);
+      }
     }
+  
     setShowPopup(true);
-
-    // Hide the popup after 3 seconds
-    setTimeout(() => {
-      setShowPopup(false);
-    }, 3000);
+    setTimeout(() => setShowPopup(false), 3000);
   };
+  
 
   return (
     <div className="cartitems">
@@ -132,24 +168,35 @@ const CartItems = () => {
 
         {/* Promo Code */}
         <div className="cartitems-promocode">
-      <p>If you have a promo code, enter it here</p>
-      <div className="cartitems-promobox">
+  <p>If you have a promo code, select it below</p>
+  
+  <div className="cartitems-promobox">
+    {promoCodes.map((promo) => (
+      <div key={promo.code} className="promo-option">
         <input
-          type="text"
-          placeholder="promo code"
-          value={promoInput}
-          onChange={(e) => setPromoInput(e.target.value)}
+          type="radio"
+          name="promo"
+          value={promo.code}
+          checked={selectedPromo === promo.code}
+          onChange={() => setSelectedPromo(promo.code)}
         />
-        <button onClick={handlePromoSubmit}>Submit</button>
+        <label>
+          <strong>{promo.code}</strong> - {promo.description}
+        </label>
       </div>
+    ))}
+  </div>
 
-      {/* Popup message */}
-      {showPopup && (
-        <div className="promo-popup">
-          {message}
-        </div>
-      )}
+  <button onClick={handlePromoSubmit}>Submit</button>
+
+  {/* Popup message */}
+  {showPopup && (
+    <div className="promo-popup">
+      {message}
     </div>
+  )}
+</div>
+
       </div>
 
       {/* Payment Modal */}

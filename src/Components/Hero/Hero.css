@@ -55,7 +55,7 @@
     overflow: hidden;
     width: 100%;
     top: 0%;
-    background-image: url('https://www.stchristophersplace.com/wp-content/uploads/2020/02/Mothershoppers-Event-Hero-Area-Background-Image-1.png');
+    background-image: url('https://github.com/claykabongok/clayma-store/blob/master/src/assets/images/hero_image_home_page.jpg?raw=true');
     background-repeat: no-repeat; 
     background-size: cover;      /* Makes the image cover the whole element */
   background-position: center; 
@@ -63,7 +63,7 @@
   }
   
   .hero-left p{
-    color: #171717;
+    color: white;
     font-size:40px;
     font-weight: 700;
     margin-left: 30px;
@@ -341,7 +341,7 @@
     html, body {
       margin: 0;
       padding: 0; 
-      overflow-x: hidden;
+      /* overflow-x: hidden; */
      
     }
   

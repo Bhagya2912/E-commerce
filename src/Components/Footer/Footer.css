@@ -97,7 +97,7 @@
 
 
 /* Media Query for screens with a max width of 800px */
-@media (max-width: 800px) {
+@media (max-width: 500px) {
   .footer {
     padding: 40px 20px; /* Reduce padding on smaller screens */
   }
@@ -154,3 +154,10 @@
     font-size: 12px; /* Adjust font size for copyright */
   }
 }
+
+
+@media (max-width: 1024px){
+  .footer{
+    padding:50px 10px;
+  }
+} 
