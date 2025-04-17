@@ -42,7 +42,7 @@ background: linear-gradient(135deg, #ff6a00, #ee0979);
   color: white;
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   animation: pulse 2s infinite;
@@ -168,7 +168,8 @@ background: linear-gradient(135deg, #ff6a00, #ee0979);
        
     }
     .countdown-timer{
-      font-size: 8px;
+      font-size: 0.40rem;
+      margin-top: -40px;
     }
    
     

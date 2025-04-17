@@ -154,6 +154,7 @@
        width: 120px;
     }
     .newsletter div button{
+      margin-bottom: 30px;
        font-size: 10px;
     }
 }
