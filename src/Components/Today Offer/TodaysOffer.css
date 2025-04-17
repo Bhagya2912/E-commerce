@@ -148,6 +148,7 @@ background: linear-gradient(135deg, #ff6a00, #ee0979);
     .todayoffer{
         height: 65vh;
         gap: 6px;
+        margin-bottom: 200px;
     }
     .todayoffer h1{
         font-size: 20px;
@@ -165,6 +166,7 @@ background: linear-gradient(135deg, #ff6a00, #ee0979);
     .todayoffer{
        top: 20px;
         height: 90vh;
+        margin-bottom: -100px;
        
     }
     .countdown-timer{

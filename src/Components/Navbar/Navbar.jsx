@@ -48,11 +48,15 @@ const Navbar = () => {
     }}></i>
         </Link>
         <div className="nav-cart-count">{wishlistItems.length}</div>
-        
+        <div><Link to='/cart'><img src={cart_icon} alt="" /></Link></div>
 
-        <Link to='/cart'><img src={cart_icon} alt="" /></Link>
+        
         <div className="nav-cart-count">{getTotalCartItems()}</div>
-        <img className='nav-dropdown' onClick={dropdown_toggle} src={nav_dropdown} alt="" />
+        <img className='nav-dropdown' onClick={dropdown_toggle} src={nav_dropdown} alt=""  style={{
+    background: 'linear-gradient(180deg,  pink, #FFD580)',
+    padding: '8px',
+    
+  }}/>
         <Link to='/login'><button>Login</button></Link>
       </div>
     </div>

@@ -72,15 +72,25 @@
     }
 }
 
+@media(max-width:500px){
+   
+    .item img{
+        width: 150px;
+        height: 35vh;
+    }
+   
+}
 
 
 @media(max-width:500px){
     .item{
         width: 160px;
+        gap: 10px;
     }
     .item img{
         width: 150px;
         height: 35vh;
+        gap: 5px;
     }
    
 }
