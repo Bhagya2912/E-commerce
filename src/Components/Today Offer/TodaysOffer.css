@@ -107,7 +107,7 @@ background: linear-gradient(135deg, #ff6a00, #ee0979);
 
 @media(max-width:1280px){
     .todayoffer{
-        height: 70vh;
+        height: 90vh;
     }
     .todayoffer h1{
         font-size: 40px;
@@ -124,7 +124,7 @@ background: linear-gradient(135deg, #ff6a00, #ee0979);
 
 @media(max-width:1024px){
     .todayoffer{
-        height: 70vh;
+        height: 80vh;
         
     }
     .todayoffer h1{
