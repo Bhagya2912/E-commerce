@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ShopContext } from "../Context/ShopContext";
 
 const CheckoutPage = ({ totalAmount }) => {
-  const { cartItems, all_product, getTotalCartAmount, addToCart, removeFromCart, removeFromCartCompletely } = useContext(ShopContext);
+  const { cartItems, all_product, getTotalCartAmount, addToCart, removeFromCart, removeFromCartCompletely,placeOrder, orders, setOrders } = useContext(ShopContext);
   const location = useLocation();
   const buyNow = location.state?.buyNow;
   const buyNowProduct = location.state?.product;
@@ -73,6 +73,32 @@ const CheckoutPage = ({ totalAmount }) => {
       setSelectedAddress(parseInt(storedSelectedAddress));
     }
   }, []);
+
+  const handleCODConfirm = () => {
+    const selected = addresses.find((addr) => addr.id === selectedAddress);
+  
+    const newOrder = {
+      name: selected.name,
+      phone: selected.phone,
+      address: selected.address,
+      paymentMethod: "Cash on Delivery",
+      totalAmount: totalWithDelivery,
+      items: Object.entries(cartItems).map(([id, item]) => {
+        const product = all_product.find((p) => p.id === Number(id));
+        return {
+          id: Number(id),
+          name: product?.name || "Product",
+          new_price: product?.new_price,
+          quantity: item.quantity,
+          size: item.size,
+        };
+      })      
+    };
+  
+    placeOrder(newOrder);
+    navigate("/order"); // go to orders page
+  };
+  
   
 
   const handleSaveAddress = () => {
@@ -380,6 +406,9 @@ const CheckoutPage = ({ totalAmount }) => {
 )}
       <p><strong>Total Amount:</strong> ₹{totalWithDelivery}</p>
       <p>🛵 Your order will be delivered soon. Please keep the exact amount ready.</p>
+      
+      <button onClick={handleCODConfirm}>Confirm Order</button>
+
       <button onClick={() => setShowCODPopup(false)} className="close-popup">Close</button>
     </div>
   </div>

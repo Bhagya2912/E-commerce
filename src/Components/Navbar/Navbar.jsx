@@ -30,6 +30,8 @@ const Navbar = () => {
         <li onClick={() => { setMenu("mens") }}><Link style={{ textDecoration: 'none',color:'black', fontWeight:'bold',fontSize:'1rem' }} to='/mens'>Men</Link>{menu === "mens" ? <hr /> : <></>}</li>
         <li onClick={() => { setMenu("womens") }}><Link style={{ textDecoration: 'none',color:'black', fontWeight:'bold',fontSize:'1rem' }} to='/womens'>Women</Link>{menu === "womens" ? <hr /> : <></>}</li>
         <li onClick={() => { setMenu("kids") }}><Link style={{ textDecoration: 'none', color:'black', fontWeight:'bold',fontSize:'1rem' }} to='/kids'>Kids</Link>{menu === "kids" ? <hr /> : <></>}</li>
+        <li><Link style={{ textDecoration: 'none', color:'black', fontWeight:'bold',fontSize:'1rem' }} to="/orders">Orders</Link></li>
+
       </ul>
       <div className="nav-login-cart">
         

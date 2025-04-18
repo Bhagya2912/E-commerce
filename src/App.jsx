@@ -15,6 +15,7 @@ import kid_banner from './Components/Assets/banner_kids.png';
 import Wishlist from './Pages/Wishlist';
 import Checkout from './Pages/Checkout';
 import ScrollToTop from './Components/ScrollToTop';
+import Orders from './Pages/Orders';
 
 
 
@@ -63,6 +64,7 @@ function App() {
           <Route path='/login' element={<LoginSignup />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
         <Footer />
       </BrowserRouter>

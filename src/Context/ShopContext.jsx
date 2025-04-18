@@ -23,6 +23,12 @@ const ShopContextProvider = (props) => {
     return savedWishlist ? JSON.parse(savedWishlist) : [];
   });
 
+  // Order state with localStorage persistence
+  const [orders, setOrders] = useState(() => {
+    const savedOrders = localStorage.getItem("orders");
+    return savedOrders ? JSON.parse(savedOrders) : [];
+  });
+
   // Persist cartItems to localStorage
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -32,6 +38,11 @@ const ShopContextProvider = (props) => {
   useEffect(() => {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
   }, [wishlist]);
+
+  // Persist orders to localStorage when orders change
+  useEffect(() => {
+    localStorage.setItem("orders", JSON.stringify(orders));
+  }, [orders]);
 
   const addToCart = (itemId, size = null) => {
     setCartItems((prev) => {
@@ -90,6 +101,29 @@ const ShopContextProvider = (props) => {
     return total;
   };
 
+  // Place order function
+  const placeOrder = () => {
+    const orderItems = Object.keys(cartItems)
+      .filter((id) => cartItems[id].quantity > 0)
+      .map((id) => {
+        const product = all_product.find((p) => p.id === Number(id));
+        return {
+          id: product.id,
+          name: product.name,
+          image: product.image,
+          new_price: product.new_price,
+          size: cartItems[id].size,
+          quantity: cartItems[id].quantity,
+        };
+      });
+
+    if (orderItems.length > 0) {
+      const newOrder = { items: orderItems };
+      setOrders((prev) => [...prev, newOrder]);
+      setCartItems(getDefaultCart()); // Clear cart after order is placed
+    }
+  };
+
   const getTotalCartItems = () => {
     let total = 0;
     for (const itemId in cartItems) {
@@ -109,7 +143,10 @@ const ShopContextProvider = (props) => {
     removeFromWishlist,
     getTotalCartAmount,
     getTotalCartItems,
-    setCartItems, // In case you want to clear the cart or reset
+    setCartItems,
+    orders,
+    setOrders,
+    placeOrder,
   };
 
   return (
